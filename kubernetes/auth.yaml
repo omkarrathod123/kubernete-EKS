@@ -8,8 +8,8 @@ spec:
   type: ClusterIP
   ports:
     - protocol: TCP
-      port: 3000
-      targetPort: 3000
+      port: 4000
+      targetPort: 4000
 ---
 apiVersion: apps/v1
 kind: Deployment

@@ -19,7 +19,7 @@ app.use(userRoutes);
 
 app.use((err, req, res, next) => {
   let code = 500;
-  let message = 'Something went wrong.';
+  let message = 'Problem !!';
   if (err.code) {
     code = err.code;
   }

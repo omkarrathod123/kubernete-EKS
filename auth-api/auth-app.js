@@ -19,7 +19,7 @@ app.use(authRoutes);
 app.use((err, req, res, next) => {
   console.log(err);
   let code = 500;
-  let message = 'Something went wrong.';
+  let message = 'Problem!!';
   if (err.code) {
     code = err.code;
   }

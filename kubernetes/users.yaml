@@ -9,7 +9,7 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 3000
+      targetPort: 4000
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -32,4 +32,4 @@ spec:
             - name: MONGODB_CONNECTION_URI
               value: 'mongodb+srv://omkar:.x6!RDpa6nN73zh@cluster1.dqfmth7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1'
             - name: AUTH_API_ADDRESSS
-              value: 'auth-service.default:3000'
+              value: 'auth-service.default:4000'

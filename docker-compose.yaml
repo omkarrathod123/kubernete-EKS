@@ -1,0 +1,15 @@
+version: "3"
+services:
+  auth:
+    build: ./auth-api
+    ports:
+      - '8000:3000'
+    environment:
+      TOKEN_KEY: 'shouldbeverysecure'
+  users:
+    build: ./users-api
+    ports:
+      - '8080:3000'
+    environment:
+      MONGODB_CONNECTION_URI: 'mongodb+srv://omkar:.x6!RDpa6nN73zh@cluster1.dqfmth7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1'
+      AUTH_API_ADDRESSS: 'auth:3000'

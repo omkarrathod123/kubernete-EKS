@@ -19,7 +19,7 @@ app.use(userRoutes);
 
 app.use((err, req, res, next) => {
   let code = 500;
-  let message = 'Problem !!';
+  let message = 'Something went wrong.';
   if (err.code) {
     code = err.code;
   }
@@ -37,7 +37,7 @@ mongoose.connect(
     if (err) {
       console.log('COULD NOT CONNECT TO MONGODB!');
     } else {
-      app.listen(4000);
+      app.listen(3000);
     }
   }
 );

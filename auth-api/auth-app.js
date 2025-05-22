@@ -19,7 +19,7 @@ app.use(authRoutes);
 app.use((err, req, res, next) => {
   console.log(err);
   let code = 500;
-  let message = 'Problem!!';
+  let message = 'Something went wrong.';
   if (err.code) {
     code = err.code;
   }
@@ -30,4 +30,4 @@ app.use((err, req, res, next) => {
   res.status(code).json({ message: message });
 });
 
-app.listen(4000);
+app.listen(3000);

@@ -8,8 +8,8 @@ spec:
   type: ClusterIP
   ports:
     - protocol: TCP
-      port: 4000
-      targetPort: 4000
+      port: 3000
+      targetPort: 3000
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
         - name: auth-api
-          image: omkarrathod123/auth-demo:latest
+          image: academind/kub-dep-auth:latest
           env:
             - name: TOKEN_KEY
               value: 'shouldbeverysecure'

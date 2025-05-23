@@ -2,7 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-const userRoutes = require('./routes/user-routes');
+const taskRoutes = require('./routes/task-routes');
+const verifyUser = require('./middleware/user-auth');
 
 const app = express();
 
@@ -11,11 +12,11 @@ app.use(bodyParser.json());
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization');
   next();
 });
 
-app.use(userRoutes);
+app.use(verifyUser, taskRoutes);
 
 app.use((err, req, res, next) => {
   let code = 500;

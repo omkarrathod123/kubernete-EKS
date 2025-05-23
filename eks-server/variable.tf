@@ -15,3 +15,11 @@ variable "Private_cidr_block" {
   type = string
   default = "192.168.2.0/24"
 }
+variable "Public1_cidr_block" {
+  type = string
+  default = "192.168.3.0/24"
+}
+variable "Private1_cidr_block" {
+  type = string
+  default = "192.168.4.0/24"
+}

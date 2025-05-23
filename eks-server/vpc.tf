@@ -33,6 +33,26 @@ resource "aws_subnet" "privateSUB" {
     Env = "Lab"
   }
 }
+resource "aws_subnet" "publicSUB1" {
+  vpc_id = aws_vpc.PracticVPC.id
+  cidr_block = var.Public1_cidr_block
+  availability_zone = "ap-south-1a"
+
+  tags = {
+    Name = "publicSub"
+    Env = "Lab"
+  }
+}
+resource "aws_subnet" "privateSUB1" {
+  vpc_id = aws_vpc.PracticVPC.id
+  cidr_block = var.Private1_cidr_block
+  availability_zone = "ap-south-1a"
+
+  tags = {
+    Name = "privateSUB"
+    Env = "Lab"
+  }
+}
 resource "aws_route_table" "publicRT" {
   vpc_id = aws_vpc.PracticVPC.id
 }
@@ -45,6 +65,10 @@ resource "aws_route_table_association" "publicRTRTA" {
   subnet_id = aws_subnet.publicSUB.id
   route_table_id = aws_route_table.publicRT.id
 }
+resource "aws_route_table_association" "publicRTRTA1" {
+  subnet_id = aws_subnet.publicSUB1.id
+  route_table_id = aws_route_table.publicRT.id
+}
 resource "aws_route_table" "privateRT" {
   vpc_id = aws_vpc.PracticVPC.id
 }
@@ -55,6 +79,10 @@ resource "aws_route" "routeNATprivate" {
 }
 resource "aws_route_table_association" "privateRTATA" {
   subnet_id = aws_subnet.privateSUB.id
+  route_table_id = aws_route_table.privateRT.id
+}
+resource "aws_route_table_association" "privateRTATA1" {
+  subnet_id = aws_subnet.privateSUB1.id
   route_table_id = aws_route_table.privateRT.id
 }
 resource "aws_eip" "natEIP" {

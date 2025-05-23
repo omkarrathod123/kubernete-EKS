@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
         - name: tasks-api
-          image: academind/kub-dep-tasks
+          image: omkarrathod123/kub-dep-tasks
           env:
             - name: MONGODB_CONNECTION_URI
               value: 'mongodb+srv://omkar:.x6!RDpa6nN73zh@cluster1.dqfmth7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1'

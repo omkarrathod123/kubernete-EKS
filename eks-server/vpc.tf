@@ -1,6 +1,8 @@
 resource "aws_vpc" "PracticVPC" {
   cidr_block = var.VPC_cidr_block
   instance_tenancy = "default"
+  enable_dns_hostnames = true
+  enable_dns_support = true
   tags = {
     Name = "PracticVPC"
     Env = "Lab"
@@ -17,6 +19,7 @@ resource "aws_subnet" "publicSUB" {
   vpc_id = aws_vpc.PracticVPC.id
   cidr_block = var.Public_cidr_block
   availability_zone = "ap-south-1b"
+  map_public_ip_on_launch = true
 
   tags = {
     Name = "publicSub"
@@ -27,6 +30,7 @@ resource "aws_subnet" "privateSUB" {
   vpc_id = aws_vpc.PracticVPC.id
   cidr_block = var.Private_cidr_block
   availability_zone = "ap-south-1b"
+  map_public_ip_on_launch = true
 
   tags = {
     Name = "privateSUB"
@@ -37,6 +41,7 @@ resource "aws_subnet" "publicSUB1" {
   vpc_id = aws_vpc.PracticVPC.id
   cidr_block = var.Public1_cidr_block
   availability_zone = "ap-south-1a"
+  map_public_ip_on_launch = true
 
   tags = {
     Name = "publicSub"
@@ -47,6 +52,7 @@ resource "aws_subnet" "privateSUB1" {
   vpc_id = aws_vpc.PracticVPC.id
   cidr_block = var.Private1_cidr_block
   availability_zone = "ap-south-1a"
+  map_public_ip_on_launch = true
 
   tags = {
     Name = "privateSUB"
@@ -79,11 +85,11 @@ resource "aws_route" "routeNATprivate" {
 }
 resource "aws_route_table_association" "privateRTATA" {
   subnet_id = aws_subnet.privateSUB.id
-  route_table_id = aws_route_table.privateRT.id
+  route_table_id = aws_route_table.publicRT.id
 }
 resource "aws_route_table_association" "privateRTATA1" {
   subnet_id = aws_subnet.privateSUB1.id
-  route_table_id = aws_route_table.privateRT.id
+  route_table_id = aws_route_table.publicRT.id
 }
 resource "aws_eip" "natEIP" {
   domain = "vpc"
